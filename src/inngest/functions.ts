@@ -13,7 +13,7 @@ export const helloWorld = inngest.createFunction(
     });
     const summarizer = createAgent({
       name: "summarizer",
-      system: "You are an expert deveoper.",
+      system: "You are an expert developer.",
       model: openai({ model: "gpt-4o" }),
     });
 

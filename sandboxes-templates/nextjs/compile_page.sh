@@ -9,8 +9,8 @@ function ping_server() {
 	  let counter++
 	  if  (( counter % 20 == 0 )); then
         echo "Waiting for server to start..."
-        sleep 0.1
       fi
+        sleep 0.1
 
 	  response=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:3000")
 	done
