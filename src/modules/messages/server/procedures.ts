@@ -8,7 +8,7 @@ export const messageRouter = createTRPCRouter({
   create: baseProcedure
     .input(
       z.object({
-        value: z.string(),
+        value: z.string().min(1, { message: "Message cannot be empty" }),
       })
     )
     .mutation(async ({ input }) => {
@@ -18,9 +18,9 @@ export const messageRouter = createTRPCRouter({
           role: "USER",
           type: "RESPONSE",
         },
-        include:{
-            fragment: true
-        }
+        include: {
+          fragment: true,
+        },
       });
 
       await inngest.send({
