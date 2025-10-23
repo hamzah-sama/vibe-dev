@@ -20,7 +20,7 @@ const Page = () => {
   return (
     <div className="min-w-7xl p-4">
       <Input onChange={(e) => setValue(e.target.value)} value={value} />
-      <Button onClick={() => test.mutate({ text: value })}>
+      <Button onClick={() => test.mutate({ value })}>
         Invoke from background job
       </Button>
     </div>
