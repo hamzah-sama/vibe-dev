@@ -74,6 +74,9 @@ export const codeAgent = inngest.createFunction(
                 const sandbox = await getSandbox(sandboxId);
                 const updateFiles = network.state.data.files || {};
                 for (const file of files) {
+                  if (file.path.startsWith("/") || file.path.includes("..")) {
+                    throw new Error("Invalid file path: " + file.path);
+                  }
                   await sandbox.files.write(file.path, file.content);
                   updateFiles[file.path] = file.content;
                 }
@@ -101,8 +104,8 @@ export const codeAgent = inngest.createFunction(
                 for (const file of files) {
                   const content = await sandbox.files.read(file);
                   contents.push({ path: file, content });
-                  return JSON.stringify(contents);
                 }
+                return JSON.stringify(contents);
               } catch (error) {
                 return "Error: " + error;
               }
@@ -149,7 +152,7 @@ export const codeAgent = inngest.createFunction(
       url: sandboxUrl,
       title: "Fragment",
       files: result.state.data.files,
-      sumary: result.state.data.summary,
+      summary: result.state.data.summary,
     };
   }
 );
