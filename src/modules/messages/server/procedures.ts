@@ -35,12 +35,27 @@ export const messageRouter = createTRPCRouter({
       return createdMessage;
     }),
 
-  getMany: baseProcedure.query(async () => {
-    const messages = await prisma.message.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-    return messages;
-  }),
+  getMany: baseProcedure
+    .input(
+      z.object({
+        projectId: z
+          .string()
+          .min(1, { message: "project id is required" })
+          .max(100, { message: "project id is too long" }),
+      })
+    )
+    .query(async ({ input }) => {
+      const messages = await prisma.message.findMany({
+        where: {
+          projectId: input.projectId,
+        },
+        orderBy: {
+          createdAt: "asc",
+        },
+        include: {
+          fragment: true,
+        },
+      });
+      return messages;
+    }),
 });
