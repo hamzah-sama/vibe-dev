@@ -22,13 +22,9 @@ export const MessageLoading = ({ messages }: Props) => {
     (message) => message.role === "USER"
   );
 
-  const isLastMessageIsUser =
-    lastMessageOfUser?.id === messages[messages.length - 1].id;
+  const isLastMessageIsUser = lastMessageOfUser?.id === messages.at(-1)?.id;
 
   const [index, setIndex] = useState(0);
-
-  console.log(lastMessageOfUser?.id);
-  console.log(messages[messages.length - 1].id);
 
   useEffect(() => {
     const interval = setInterval(() => {
