@@ -39,7 +39,7 @@ export const ProjectHeader = ({ url, setKeyIframe }: Props) => {
         </Button>
       </Hint>
       <Hint teks="open in new tab">
-        <Button variant="outline" onClick={() => window.open(url, "_blank")}>
+        <Button variant="outline" onClick={() => window.open(url, "_blank", "noopener,noreferrer")}>
           <ExternalLink className="size-4" />
         </Button>
       </Hint>

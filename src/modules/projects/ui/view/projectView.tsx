@@ -31,13 +31,20 @@ export const ProjectView = ({ projectId }: Props) => {
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={65} minSize={40}>
-          {!!fragment && <ProjectHeader url={fragment?.sandboxUrl} keyIframe={keyIframe} setKeyIframe={setKeyIframe}/>}
-          <iframe
-            key={keyIframe}
-            sandbox="allow-same-origin allow-scripts allow-forms"
-            src={fragment?.sandboxUrl}
-            className="w-full h-full"
-          />
+          {!!fragment && (
+            <>
+              <ProjectHeader
+                url={fragment?.sandboxUrl}
+                setKeyIframe={setKeyIframe}
+              />
+              <iframe
+                key={keyIframe}
+                sandbox="allow-same-origin allow-scripts allow-forms"
+                src={fragment?.sandboxUrl}
+                className="w-full h-full"
+              />
+            </>
+          )}
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>

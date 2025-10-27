@@ -7,7 +7,7 @@ interface Props {
 
 export const Hint = ({ children, teks }: Props) => {
   return (
-    <Tooltip>
+    <Tooltip delayDuration={500}>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
       <TooltipContent>
         <p>{teks}</p>
