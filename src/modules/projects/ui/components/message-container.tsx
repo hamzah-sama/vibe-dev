@@ -7,12 +7,19 @@ import { MessageForm } from "./message-form";
 import { useEffect, useRef } from "react";
 import { MessageHeader } from "./message-header";
 import { MessageLoading } from "./message-loading";
+import { Fragment } from "@/generated/prisma";
 
 interface Props {
   projectId: string;
+  fragment?: Fragment | null;
+  setFragment: (fragment: Fragment | null) => void;
 }
 
-export const MessageContainer = ({ projectId }: Props) => {
+export const MessageContainer = ({
+  projectId,
+  fragment,
+  setFragment,
+}: Props) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const trpc = useTRPC();
   const { data: messages } = useSuspenseQuery(
@@ -40,8 +47,8 @@ export const MessageContainer = ({ projectId }: Props) => {
               type={message.type}
               fragment={message.fragment}
               createdAt={message.createdAt}
-              isActiveFragement={false}
-              onFragmentClick={() => {}}
+              isActiveFragement={message.fragment?.id === fragment?.id}
+              onFragmentClick={() => setFragment(message.fragment)}
             />
           ))}
         </div>
