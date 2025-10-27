@@ -49,7 +49,7 @@ export const MessageCard = ({
               className={cn(
                 "flex text-start items-start gap-2 p-3 bg-muted hover:bg-secondary transition-colors w-fit rounded-lg",
                 isActiveFragement &&
-                  "bg-primary text-primary-foreground border-primary"
+                  "bg-primary text-primary-foreground border-primary hover:bg-primary hover:text-primary-foreground"
               )}
               onClick={() => onFragmentClick(fragment)}
             >
