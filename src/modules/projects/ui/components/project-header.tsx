@@ -19,7 +19,7 @@ export const ProjectHeader = ({ url, setKeyIframe }: Props) => {
     }, 2000);
   };
   return (
-    <div className="flex items-center w-screen gap-4 border-b p-2">
+    <div className="flex items-center gap-4 border-b p-2">
       <Hint teks="Refresh">
         <Button
           variant="outline"
@@ -28,18 +28,21 @@ export const ProjectHeader = ({ url, setKeyIframe }: Props) => {
           <RefreshCcwIcon />
         </Button>
       </Hint>
-      <Hint teks={copiedActive ? "copied" : "copy url"}>
+      <Hint teks={copiedActive ? "copied" : "copy url"} align="center">
         <Button
           variant="secondary"
-          className="w-full text-left truncate max-w-[57%]"
+          className="flex-1 justify-start text-start "
           disabled={copiedActive}
           onClick={handleCopy}
         >
-          {url}
+          <span className="truncate">{url}</span>
         </Button>
       </Hint>
-      <Hint teks="open in new tab">
-        <Button variant="outline" onClick={() => window.open(url, "_blank", "noopener,noreferrer")}>
+      <Hint teks="open in new tab" align="end">
+        <Button
+          variant="outline"
+          onClick={() => window.open(url, "_blank", "noopener,noreferrer")}
+        >
           <ExternalLink className="size-4" />
         </Button>
       </Hint>
